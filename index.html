@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuel & Cost Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2196f3">
+</head>
+<body>
+  <!-- 🔹 Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="fuelSection">⛽ Fuel</button>
+    <button class="tab-btn" data-tab="costSection">💰 Cost</button>
+    <button class="tab-btn" data-tab="summarySection">📊 Summary</button>
+  </div>
+
+  <!-- 🔹 Sections (empty, will be rendered by ui.js) -->
+  <section id="fuelSection" class="tab-content"></section>
+  <section id="costSection" class="tab-content" style="display:none;"></section>
+  <section id="summarySection" class="tab-content" style="display:none;"></section>
+
+  <!-- 🔹 Toast & Sync Status -->
+  <div id="toast" class="toast"></div>
+  <div id="syncStatus" class="sync-status"></div>
+
+  <!-- Scripts -->
+  <script src="storage.js"></script>
+  <script src="ui.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then(() => console.log("✅ Service Worker registered"))
+        .catch(err => console.error("SW registration failed", err));
+    }
+  </script>
+</body>
+</html>
